@@ -1,0 +1,16 @@
+name: Temporary Schedule Diagnostic
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Record trigger only - no messages or credentials
+        run: |
+          echo "Event: $GITHUB_EVENT_NAME"
+          date -u
